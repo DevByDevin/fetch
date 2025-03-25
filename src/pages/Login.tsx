@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { useQueryClient } from 'react-query';
 import { AuthContext } from '../context/AuthContext';
+import { BASE_URL } from '../constant';
 
 export const Login = () => {
   const [name, setName] = useState('');
@@ -14,7 +15,7 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
