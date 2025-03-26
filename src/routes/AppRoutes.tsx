@@ -5,6 +5,7 @@ import { Home } from '../pages/Home';
 import { AppSpinner } from '../components/Spinner';
 import { PaginationProvider } from '../context/PaginationContext';
 import { FilterProvider } from '../context/FilterContext';
+import { MatchProvider } from '../context/MatchContext';
 
 export const AppRoutes = () => {
   const { isVerified, isLoading } = useContext(AuthContext);
@@ -16,7 +17,9 @@ export const AppRoutes = () => {
       {isVerified ? (
         <PaginationProvider>
           <FilterProvider>
-            <Home />
+            <MatchProvider>
+              <Home />
+            </MatchProvider>
           </FilterProvider>
         </PaginationProvider>
       ) : (

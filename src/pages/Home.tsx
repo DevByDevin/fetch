@@ -8,6 +8,7 @@ import { useSearchDogs } from '../apis/useSearchDogs';
 import { AppSpinner } from '../components/Spinner';
 import { PaginationContext } from '../context/PaginationContext';
 import { Pagination } from '../components/Pagination';
+import { Match } from '../components/Match';
 
 export const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,6 +35,7 @@ export const Home = () => {
           Search
         </Button>
       </Form>
+      <Match />
       <Filters />
       <Row xs={1} sm={2} md={3} lg={5}>
         {dogs?.map((dog: Dog, index: number) => (

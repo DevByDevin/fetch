@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Badge, Button, Card } from 'react-bootstrap';
+import { Heart, HeartFill } from 'react-bootstrap-icons';
+import { MatchContext } from '../context/MatchContext';
 
 export interface Dog {
   id: string;
@@ -10,8 +12,16 @@ export interface Dog {
   breed: string;
 }
 
-export const DogCard = ({ dog }: { dog: Dog }) => {
-  const { img, name, age, zip_code, breed } = dog;
+export const DogCard = ({ dog, withLike = true }: { dog: Dog; withLike?: boolean }) => {
+  const { id, img, name, age, zip_code, breed } = dog;
+  const { matchDogs, setMatchDogs } = useContext(MatchContext);
+  const liked = matchDogs.includes(id);
+
+  const handleLike = () => {
+    if (!liked) setMatchDogs(prev => [...prev, id]);
+    else setMatchDogs(prev => prev.filter(item => item !== id));
+  };
+
   return (
     <Card style={{ width: '16rem', height: '24rem' }}>
       <Card.Img variant="top" src={img} alt={`photo_${name}`} style={{ height: '14rem', objectFit: 'cover' }} loading="lazy" />
@@ -20,12 +30,14 @@ export const DogCard = ({ dog }: { dog: Dog }) => {
         <Card.Subtitle className="mb-2 text-muted">{breed}</Card.Subtitle>
         <Card.Text style={{ display: 'flex', gap: '0.2rem', flexWrap: 'wrap' }}>
           <Badge bg="warning">{`${age} yrs`}</Badge>
-          <Badge bg="danger">{zip_code}</Badge>
-          <Badge bg="success">{breed}</Badge>
+          <Badge bg="success">{zip_code}</Badge>
         </Card.Text>
-        <Button variant="primary" size="sm">
-          Learn more
-        </Button>
+        {withLike && (
+          <Button variant="outline-light" size="sm" style={{ color: 'red', borderColor: 'red' }} onClick={handleLike}>
+            {liked ? <HeartFill style={{ marginRight: '5px' }} /> : <Heart style={{ marginRight: '5px' }} />}
+            Like
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
