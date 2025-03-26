@@ -1,6 +1,6 @@
 import React from 'react';
 import { BASE_URL } from '../constant';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const apiGetBreeds = async () => {
   const response = await fetch(`${BASE_URL}/dogs/breeds`, {

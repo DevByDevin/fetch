@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
-import { useQueryClient } from 'react-query';
 import { AuthContext } from '../context/AuthContext';
 import { BASE_URL } from '../constant';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const Login = () => {
   const [name, setName] = useState('');
@@ -28,8 +28,6 @@ export const Login = () => {
       localStorage.setItem('email', email);
 
       setIsVerified(true);
-
-      await queryClient.invalidateQueries('currentSession');
     } catch (err) {
       console.error(err);
       alert('Login failed');

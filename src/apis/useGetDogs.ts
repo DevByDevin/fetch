@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BASE_URL } from '../constant';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { getQueryKey } from '../utils/queryKey';
 
-const apiGetDogs = async (ids: string[]) => {
+const apiGetDogs = async (dogIds: string[]) => {
   const url = `${BASE_URL}/dogs`;
 
   const response = await fetch(url, {
@@ -11,7 +12,7 @@ const apiGetDogs = async (ids: string[]) => {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify(ids),
+    body: JSON.stringify(dogIds),
   });
   if (!response.ok) {
     throw new Error('*Can not get Dogs data*');
@@ -19,6 +20,10 @@ const apiGetDogs = async (ids: string[]) => {
   return response.json();
 };
 
-export const useGetDogs = (ids: string[]) => {
-  return useQuery(['dogs'], () => apiGetDogs(ids));
+export const useGetDogs = (dogIds: string[]) => {
+  return useQuery(['dogs', ...getQueryKey(dogIds)], () => apiGetDogs(dogIds), {
+    cacheTime: 1000 * 60 * 5,
+    staleTime: 0,
+    keepPreviousData: true,
+  });
 };

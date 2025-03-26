@@ -8,7 +8,7 @@ export const AuthContext = createContext({
   isLoading: true,
 });
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isVerified, setIsVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
