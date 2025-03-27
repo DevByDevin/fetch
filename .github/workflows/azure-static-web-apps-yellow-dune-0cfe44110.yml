@@ -40,10 +40,14 @@ jobs:
                return await coredemo.getIDToken()
            result-encoding: string
 
+
+      - name: Build Vite app
+        run: npm run build
+        
       - name: Show dist contents (for debug)
         run: ls -al dist/
         
-      - name: Build And Deploy
+      - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
