@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Badge, Button, Modal, Offcanvas } from 'react-bootstrap';
-import { GiSittingDog } from 'react-icons/gi';
+import { GiJumpingDog, GiSittingDog } from 'react-icons/gi';
 import styles from './match.module.scss';
 import { MatchContext } from '../context/MatchContext';
 import { useGetMatchDog, useGetMatchDogs } from '../apis/useGetDogs';
@@ -8,6 +8,8 @@ import { useGetMatch } from '../apis/useMatch';
 import { Dog, DogCard } from './DogCard';
 import { MatchDogCard } from './MatchDogCard';
 import { AppSpinner } from './Spinner';
+import { useWindowSize } from 'react-use';
+import ReactConfetti from 'react-confetti';
 
 export const Match = () => {
   const [show, setShow] = useState(false);
@@ -36,13 +38,16 @@ export const Match = () => {
     <div className={styles.matchContainer}>
       <Button variant="success" onClick={handleShow} className="me-2">
         <div className={styles.matchPill}>
-          <div>Liked Dogs</div>
+          <div>
+            <GiJumpingDog /> Puppies you Liked!
+          </div>
           <div>
             <Badge pill bg="info">
               {numOfLiked}
             </Badge>
           </div>
         </div>
+        <div className={styles.helper}>Click to see the one for you~</div>
       </Button>
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
@@ -80,6 +85,7 @@ export const Match = () => {
           <Button onClick={handleCloseModal}>Close</Button>
         </Modal.Footer>
       </Modal>
+      {showModal && <ReactConfetti gravity={0.4} />}
     </div>
   );
 };

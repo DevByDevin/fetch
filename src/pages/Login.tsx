@@ -2,14 +2,12 @@ import React, { useContext, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext';
 import { BASE_URL } from '../constant';
-import { useQueryClient } from '@tanstack/react-query';
 
 export const Login = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
   const { setIsVerified } = useContext(AuthContext);
-  const queryClient = useQueryClient();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,7 +15,7 @@ export const Login = () => {
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', connection: 'keep-alive' },
         credentials: 'include',
         body: JSON.stringify({ email, name }),
       });
