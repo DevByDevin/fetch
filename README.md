@@ -5,3 +5,7 @@ Welcome to the Fetch Frontend Take-Home Exercise! This project aims to create a 
 # Run App locally
 
 yarn run dev
+
+# Web-app
+
+Url: https://github.com/DevByDevin/fetch
