@@ -1,0 +1,12 @@
+{
+  "mimeTypes": {
+    ".js": "application/javascript",
+    ".css": "text/css",
+    ".json": "application/json",
+    ".wasm": "application/wasm"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/favicon.ico"]
+  }
+}
