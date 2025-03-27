@@ -30,7 +30,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip React build folder for deployment
-        run: zip -r release.zip build
+        run: zip -r release.zip dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
