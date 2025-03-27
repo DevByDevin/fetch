@@ -40,9 +40,6 @@ jobs:
                return await coredemo.getIDToken()
            result-encoding: string
 
-      - name: Copy config into dist
-        run: cp staticwebapp.config.json dist/
-
       - name: Show dist contents (for debug)
         run: ls -al dist/
         
