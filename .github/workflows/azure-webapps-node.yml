@@ -69,7 +69,7 @@ jobs:
       with:
         name: node-app
 
-    - name: 'Deploy to Azure WebApp'
+    - name: Azure Login
       id: deploy-to-webapp
       uses: Azure/login@v2.2.0
       with:
