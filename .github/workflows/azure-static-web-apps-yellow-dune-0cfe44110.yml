@@ -46,6 +46,9 @@ jobs:
         
       - name: Show dist contents (for debug)
         run: ls -al dist/
+
+      - name: Debug dist/index.html
+        run: cat dist/index.html
         
       - name: Deploy
         id: builddeploy
