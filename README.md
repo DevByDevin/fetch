@@ -8,4 +8,4 @@ yarn run dev
 
 # Web-app
 
-Url: https://github.com/DevByDevin/fetch
+Url: https://yellow-dune-0cfe44110.6.azurestaticapps.net
